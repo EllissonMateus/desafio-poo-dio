@@ -3,32 +3,12 @@ package br.com.dio.desafio.dominio;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Mentoria {
+public class Mentoria extends Conteudo{
 
-	private String titulo;
-	private String descricao;
 	private LocalDate data;
 	
 	public Mentoria() {};
 	
-	public Mentoria(String titulo, String descricao, LocalDate data) {
-		this.titulo = titulo;
-		this.descricao = descricao;
-		this.data = data;
-	}
-	 
-	public String getTitulo() {
-		return titulo;
-	}
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 	public LocalDate getData() {
 		return data;
 	}
@@ -38,12 +18,12 @@ public class Mentoria {
 
 	@Override
 	public String toString() {
-		return "Mentoria [titulo = " + titulo + ", descricao = " + descricao + ", data = " + data + "]";
+		return "Mentoria [titulo = " + getTitulo() + ", descricao = " + getDescricao() + ", data = " + data + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(data, descricao, titulo);
+		return Objects.hash(data, getDescricao(), getTitulo());
 	}
 
 	@Override
@@ -55,8 +35,13 @@ public class Mentoria {
 		if (getClass() != obj.getClass())
 			return false;
 		Mentoria other = (Mentoria) obj;
-		return Objects.equals(data, other.data) && Objects.equals(descricao, other.descricao)
-				&& Objects.equals(titulo, other.titulo);
+		return Objects.equals(data, other.data) && Objects.equals(getDescricao(), other.getDescricao())
+				&& Objects.equals(getTitulo(), other.getTitulo());
+	}
+
+	@Override
+	public double calcularXp() {
+		return XP_PADRAO + 20d;
 	}
 	
 	
